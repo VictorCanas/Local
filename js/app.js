@@ -41,7 +41,7 @@ $.getJSON("https://ipinfo.io/geo", function(data) {
   $.each(data, function() {
     zip = data.postal;
     city = data.city;
-    globalzip = zip || "23233";
+    globalzip = zip || "23173";
   });
   $("#zip").html(zip);
   $("#city").html(city);
