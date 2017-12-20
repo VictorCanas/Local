@@ -5692,8 +5692,10 @@ button.close {
 
 .tempdisplay {
   cursor: pointer;
-  color: #006dcc;
+  color: #ffffff;
   background: none;
+  padding-top: 5px;
+  padding-right: 10px;
 }
 
 a.bg-primary:focus, a.bg-primary:hover {
