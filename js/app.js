@@ -33,3 +33,52 @@ $(document).ready(function() {
 
 })(jQuery); // End of use strict
 
+var globalzip = "";
+
+$.getJSON("https://ipinfo.io/geo", function(data) {
+  var zip = "";
+  var city = "";
+  $.each(data, function() {
+    zip = data.postal;
+    city = data.city;
+    globalzip = zip;
+  });
+  $("#zip").html(zip);
+  $("#city").html(city);
+
+
+  //get weather api data using location api 
+  var api = "http://api.openweathermap.org/data/2.5/weather?zip=";
+  var appid = "&appid=427ea7590c5eea027c9993610e99f223"
+  var apiCode = api + globalzip + appid;
+
+  $.getJSON(apiCode, function(data) {
+    var temp = "";
+    var condition = "";
+    var icon = "";
+    $.each(data, function() {
+      temp = data.main.temp;
+      condition = data.weather[0].description;
+      icon = data.weather[0].icon;
+    });
+    $("#condition").html(condition);
+    var tempF = ((temp * (9 / 5)) - 459.67).toFixed(1);
+    var tempC = (temp - (273.15)).toFixed(1);
+
+    $(".temps").html(tempF);
+
+    $(".tempdisplay").click(function() {
+      if ($('#degree-letter').is(":contains('F')")) {
+        $('.temps').html(tempC);
+        $("#degree-letter").html("C");
+      } else {
+        $('.temps').html(tempF);
+        $("#degree-letter").html("F");
+      }
+    });
+
+    //add icon image to html
+    $('.iconPng').prepend('<img id="iconPng" src="http://openweathermap.org/img/w/' + icon + '.png">');
+
+  });
+});
