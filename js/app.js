@@ -48,7 +48,7 @@ $.getJSON("https://ipinfo.io/geo", function(data) {
 
 
   //get weather api data using location api 
-  var api = "http://api.openweathermap.org/data/2.5/weather?zip=";
+  var api = "https://api.openweathermap.org/data/2.5/weather?zip=";
   var appid = "&appid=427ea7590c5eea027c9993610e99f223"
   var apiCode = api + globalzip + appid;
 
